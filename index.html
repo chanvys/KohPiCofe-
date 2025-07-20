@@ -63,6 +63,7 @@
     }
 
     .hero {
+      width: 100%;
       height: 100vh;
       background: url('https://i.pinimg.com/736x/47/d8/18/47d8181a7dbfddbeaaa994b53a190058.jpg') no-repeat center center/cover;
       position: relative;
@@ -79,8 +80,8 @@
     .navbar {
       position: absolute;
       top: 0;
-      z-index: 2;
-      width: 100%;
+      z-index: 98;
+      width: 90%;
       padding: 25px 60px;
       display: flex;
       justify-content: space-between;
@@ -155,34 +156,32 @@
 
     .modal, .pay-modal {
       position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 90%;
-      /* height: 100%; */
+      top: 0; 
+      left: 0;
+      width: 100%;
       height: 100vh;
       background: rgba(0, 0, 0, 0.7);
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 1000;
-      transform: translate(-50%, -50%);
-      overflow-y: auto;
+      z-index: 998;    
     }
 
     .modal-content, .pay-content {
       background: white;
       padding: 20px;
       border-radius: 8px;
-      max-width: 400px;
-      width: 90%;
+      max-width: 380px;
+      width: 100%;
+      height: 100%;
       text-align: center;
       position: relative;
     }
 
     .close-btn {
       position: absolute;
-      top: 10px;
-      right: 15px;
+      top: 5px;
+      right: 10px;
       cursor: pointer;
       font-size: 24px;
     }
@@ -256,12 +255,12 @@
       <span class="close-btn" onclick="closeModal()">&times;</span>
       <img id="modalImage" src="" alt="Coffee Image" />
       <h2 style="font-size: 30px; color: #6b3e26; font-weight: bold;" id="modalName"></h2>
-      <p style="color: red;" id="modalPrice"></p>
-      <p style="text-align: start;" id="modalRating"></p>
       <p id="modalCategory"></p>
-      <input type="number" id="qty" value="1" min="1" style="border: 1px solid #504f4f; border-radius: 5px; margin: 10px; text-align: center;">
+      <p style="color: red;" id="modalPrice"></p>
+      <p style="text-align: start;" id="modalRating"></p>     
+      <input type="number" id="qty" value="1" min="1" style="border: 1px solid #504f4f; padding: 10px 15px; width: 50%; border-radius: 5px; margin: 10px; text-align: center;">
       <p style="font-weight: bold; font-size: 20px;" id="total"></p>
-      <button onclick="openPayModal()" style="background-color: rgb(235, 61, 119); color: white; padding: 10px 15px; width: 100%; cursor: pointer;">Pay Now</button>
+      <button onclick="openPayModal()" style="border: none; background-color: rgb(235, 61, 119); color: white; padding: 10px 15px; width: 100%; cursor: pointer;">Pay Now</button>
     </div>
   </div>
 
@@ -329,8 +328,8 @@
       document.getElementById('coffeeModal').classList.remove('hidden');
       document.getElementById('modalImage').src = val.image;
       document.getElementById('modalName').textContent = val.name;
-      document.getElementById('modalPrice').textContent = 'Price: $' + val.price;
       document.getElementById('modalCategory').textContent = 'Category: ' + val.category;
+      document.getElementById('modalPrice').textContent = 'Price: $' + val.price;
       document.getElementById('qty').value = 1;
       currentPrice = val.price;
       updateTotal();
