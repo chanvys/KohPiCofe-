@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> Coffee copy</title>
+  <link rel="stylesheet" href="./src/output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f3f0;
+      color: #333;
+      padding: 0;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: start;
+      color: #6b3e26;
+      font-size: 50px;
+      margin-top: 50px;
+    }
+
+    .coffee-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 40px;
+    }
+
+    .coffee-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .coffee-card:hover {
+      transform: scale(1.03);
+    }
+
+    .coffee-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .coffee-card .info {
+      padding: 15px;
+    }
+
+    .coffee-card .info h2 {
+      font-size: 20px;
+      margin: 0 0 10px;
+    }
+
+    .coffee-card .info p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .hero {
+      height: 100vh;
+      background: url('https://i.pinimg.com/736x/47/d8/18/47d8181a7dbfddbeaaa994b53a190058.jpg') no-repeat center center/cover;
+      position: relative;
+      color: white;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .navbar {
+      position: absolute;
+      top: 0;
+      z-index: 2;
+      width: 100%;
+      padding: 25px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #ff6b35;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #ff6b35;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 60px;
+      max-width: 700px;
+    }
+
+    .hero-content h1 {
+      font-size: 3.8rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      color: white;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: white;
+      margin-bottom: 35px;
+    }
+
+    .hero-content button {
+      padding: 14px 30px;
+      font-size: 1rem;
+      background: rgb(42, 149, 163);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .hero-content button:hover {
+      background: rgb(3, 80, 90);
+    }
+
+    .modal, .pay-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal-content, .pay-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #modalImage {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 20px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero-content {
+        align-items: center;
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="navbar">
+      <div class="logo"> Koh Pir Cofe`<span>.</span></div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="hero-content">
+      <h1>Start Your Day<br>With a Fresh Coffee</h1>
+      <p>Coffee is a popular and beloved beverage enjoyed by people around the world.</p>
+      <button>Order Now</button>
+    </div>
+  </section>
+
+  <h2 style="text-align: center; font-size: 50px;">☕ Coffee Menu</h2>
+  <div class="coffee-container" id="coffeeList"></div>
+
+  <div class="modal hidden" id="coffeeModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="Coffee Image" />
+      <h2 style="font-size: 30px; color: #6b3e26; font-weight: bold;" id="modalName"></h2>
+      <p style="color: red;" id="modalPrice"></p>
+      <p style="text-align: start;" id="modalRating"></p>
+      <p id="modalCategory"></p>
+      <input type="number" id="qty" value="1" min="1" style="border: 1px solid #504f4f; border-radius: 5px; margin: 10px; text-align: center;">
+      <p style="font-weight: bold; font-size: 20px;" id="total"></p>
+      <button onclick="openPayModal()" style="background-color: rgb(235, 61, 119); color: white; padding: 10px 15px; width: 100%; cursor: pointer;">Pay Now</button>
+    </div>
+  </div>
+
+  <div class="pay-modal hidden" id="payModal">
+    <div class="pay-content">
+      <span class="close-btn" onclick="closePayModal()">&times;</span>
+      <h2 style="color: blue; font-weight: bold; font-size: 40px;font-family:Arial, Helvetica, sans-serif ">Total Payment</h2>
+      <p id="finalTotal" style=" font-size: 40px ;color: red; font-size: 40px; margin-bottom: 20px;"></p>
+      <img style="margin: auto;" src="https://i.pinimg.com/736x/a4/e3/bd/a4e3bd157ee6a7047babfd470d679605.jpg" alt="QR Code">
+    </div>
+  </div>
+  <footer style="background-color: #6b3e26; color: white; text-align: center; padding: 20px 10px; margin-top: 60px;">
+  <p>&copy; 2025 Koh Pi Coffee. All rights reserved.</p>
+  <p>Follow us on 
+    <a href=" https://www.instagram.com/jivannzz_?igsh=cDNiZWw2M2g5aHlh&utm_source=ig_contact_invite" style="color: #f9c74f; text-decoration: none;">Instagram</a> |
+    <a href="https://www.facebook.com/yj3zj9lwbp?mibextid=wwXIfr&rdid=XxMRSaXdzn5dRlZw&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1FDbkZbYBa%2F%3Fmibextid%3DwwXIfr#" style="color: #f9c74f; text-decoration: none;">Facebook</a> |
+    <a href="https://www.tiktok.com/@jivanz_?_t=ZS-8y9R34ZDeC1&_r=1" style="color: #f9c74f; text-decoration: none;">Tik Tok</a> |
+    <a href="https://t.me/Chanvys" style="color: #f9c74f; text-decoration: none;">Telegram</a>
+  </p>
+</footer>
+
+
+  <script>
+    const url = 'https://coffee-api-nu.vercel.app/';
+    let currentPrice = 0;
+
+    async function fetchAPI() {
+      const response = await fetch(url);
+      const data = await response.json();
+      const coffeeList = data[0].data;
+
+      const container = document.getElementById('coffeeList');
+
+      function getStar(number) {
+        let star = "";
+        for (let i = 1; i <= 5; i++) {
+          if (i <= number) {
+            star += '<i class="fa-solid fa-star" style="color: orange;"></i>';
+          } else {
+            star += '<i class="fa-regular fa-star"></i>';
+          }
+        }
+        return star;
+      }
+
+      coffeeList.forEach(val => {
+        const card = document.createElement('div');
+        card.className = 'coffee-card';
+        card.innerHTML = `
+          <img src="${val.image}" alt="${val.name}">
+          <div class="info">
+            <h2>${val.name}</h2>
+            <h2 style="color: red;">$${val.price}</h2>
+            <p>${getStar(val.rating)}</p>
+            <p>${val.category}</p>
+          </div>
+        `;
+        card.addEventListener('click', () => showData(val));
+        container.appendChild(card);
+      });
+    }
+
+    function showData(val) {
+      document.body.style.overflow = 'hidden';
+      document.getElementById('coffeeModal').classList.remove('hidden');
+      document.getElementById('modalImage').src = val.image;
+      document.getElementById('modalName').textContent = val.name;
+      document.getElementById('modalPrice').textContent = 'Price: $' + val.price;
+      document.getElementById('modalCategory').textContent = 'Category: ' + val.category;
+      document.getElementById('qty').value = 1;
+      currentPrice = val.price;
+      updateTotal();
+    }
+
+    function closeModal() {
+      document.body.style.overflow = '';
+      document.getElementById('coffeeModal').classList.add('hidden');
+    }
+
+    function openPayModal() {
+      const total = parseInt(document.getElementById('qty').value) * currentPrice;
+      document.getElementById('finalTotal').textContent = 'Total: $' + total;
+      document.getElementById('payModal').classList.remove('hidden');
+    }
+
+    function closePayModal() {
+      document.getElementById('payModal').classList.add('hidden');
+    }
+
+    const qtyInput = document.getElementById('qty');
+    const totalDisplay = document.getElementById('total');
+
+    function updateTotal() {
+      const qty = parseInt(qtyInput.value);
+      const total = qty * currentPrice;
+      totalDisplay.textContent = 'Total : $' + total;
+    }
+
+    qtyInput.addEventListener('input', updateTotal);
+
+    fetchAPI();
+  </script>
+</body>
+</html>
